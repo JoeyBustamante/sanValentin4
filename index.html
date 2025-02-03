@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi San Valentín</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom right, #fbe4e4, #d94f70);
+            color: #fff;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .heart {
+            font-size: 6em;
+            color: #fff;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .heart:hover {
+            transform: scale(1.1);
+        }
+
+        .button {
+            font-size: 1.5em;
+            padding: 15px 35px;
+            background-color: #d94f70;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            text-decoration: none;
+            margin: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #b33d55;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .footer {
+            margin-top: 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        #thanksMessage {
+            display: none;
+            font-size: 2.5em;
+            color: #2e8b57;
+            margin-top: 40px;
+            animation: fadeIn 1s ease;
+        }
+
+        #emojiMessage {
+            font-size: 6em;
+            color: #f44336;
+            display: none;
+            margin-top: 20px;
+            animation: fadeIn 1s ease;
+        }
+
+        /* Animación de desvanecimiento */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Añadiendo una sombra sutil al fondo */
+        .main-content {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            margin-bottom: 20px;
+        }
+
+        /* Estilo para la animación de los botones */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+    </style>
+    <!-- Script de EmailJS -->
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        // Inicializa EmailJS
+        (function(){
+            emailjs.init("s41Udzb3WS3h-goR4");  // Reemplaza con tu clave API de EmailJS
+        })();
+
+        function sendEmail() {
+            emailjs.send("service_cjrj9zm", "template_w88fv8u", {
+                from_name: "Tu nombre", // Cambia esto por tu nombre
+                message: "La persona ha respondido que no quiere ser tu San Valentín." // El mensaje que se enviará
+            })
+            .then(function(response) {
+                console.log("Correo enviado exitosamente", response);
+            }, function(error) {
+                console.log("Error al enviar el correo", error);
+            });
+        }
+
+        function showThanks() {
+            document.getElementById('mainContent').style.display = 'none';  // Ocultamos el contenido principal
+            document.getElementById('thanksMessage').style.display = 'block';  // Mostramos el mensaje de gracias
+        }
+
+        function showEmoji() {
+            document.getElementById('mainContent').style.display = 'none';  // Ocultamos el contenido principal
+            document.getElementById('emojiMessage').style.display = 'block';  // Mostramos el emoji
+            sendEmail();  // Enviar el correo cuando se hace clic en "No"
+        }
+    </script>
+</head>
+<body>
+
+    <div id="mainContent" class="main-content">
+        <h1>Hola Allison,</h1>
+
+        <div class="heart">❤️</div>
+
+        <h2>¿Quieres ser mi San Valentín?</h2>
+
+        <p>Este 14 de febrero me encantaría compartirlo contigo</p>
+
+        <div class="button-container">
+            <button onclick="showThanks()" class="button">Sí, mi amor</button>
+            <button onclick="showEmoji()" class="button">No</button>
+        </div>
+
+        <div class="footer">
+            <p>Yo te quiero musho, mua mua mua mua <br> </p>
+        </div>
+    </div>
+
+    <div id="thanksMessage">
+        <p>¡Gracias por ser mi polola! 💖</p>
+    </div>
+
+    <div id="emojiMessage">
+        <p>👺👺👺👺👺👺👺👺👺</p>
+    </div>
+
+</body>
+</html>
